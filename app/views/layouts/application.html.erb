@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- ラッパーページ
+     全てのページで表示されるファイル  -->
 <html>
   <head>
     <title>TestApp</title>
@@ -9,6 +11,14 @@
   </head>
 
   <body>
+    <% flash.each do |name, msg| %>
+    <ul>
+      <!-- msgが表示される  -->
+      <li><%= msg %></li>
+    </ul>
+    <% end %>
+    
     <%= yield %>
+    
   </body>
 </html>

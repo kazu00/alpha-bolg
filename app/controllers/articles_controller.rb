@@ -3,14 +3,22 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
   
-  def create
-    # viewに表示するだけの行
-    render plain: params[:article].inspect
-    #  生成した記事を保存する処理を行う
+  def create    
+    #  記事の作成、titleとdescriptionが入力されている
     @article = Article.new(article_params)
-    @article.save
-    # 生成した記事を view に飛ばす
-    redirect_to article_show(@article)
+    # =>保存が成功すれば、
+    if @article.save
+      flash[:notice] = "記事の作成に成功しました"
+      # 生成した記事を view に飛ばす
+      redirect_to article_path(@article)
+    else
+      render  'new'
+    end
+  end
+  
+  def show
+    # 特定の記事を検索する
+    @article = Article.find(params[:id])
   end
   
   private
