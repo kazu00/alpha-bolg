@@ -1,6 +1,5 @@
-
 <% if @article.errors.any? %>
-<h2>次にエラーにより、記事が作成できませんでした。</h2>
+<h2>次のエラーにより、記事が作成できませんでした。</h2>
 <ul>
     <% @article.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
@@ -8,7 +7,7 @@
 </ul>
 <% end %>
 
-# Rails5では、非推奨なヘルパー
+<!-- Rails5では、非推奨なヘルパー -->
 <% form_for @article do |f| %>
     <p>
         <% f.label :title %><br/>

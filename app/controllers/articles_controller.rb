@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
-
+  # only とかかれたメソッドのみメソッド実行直後に set_article が実行される
+  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  
+  
   def index
     @articles = Articles.all
   end
@@ -9,8 +12,6 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    # edit.htmlから情報を受け取る？
-    @article = Article.find(params[:id ])
     if @article.update(article_params)
       flash[:notice] = "記事の編集に成功しました"
       # 受け取った@articleをshow.htmlで表示する
@@ -34,13 +35,19 @@ class ArticlesController < ApplicationController
     end
   end
   
+  def update
+    if @article.update(article_params)
+        flash[:notice] = "記事の更新に成功しました"
+        redirect_to article_path(@article)
+    else
+        render 'edit'
+    end
+  end
+  
   def show
-    # 特定の記事を検索する
-    @article = Article.find(params[:id])
   end
   
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "記事の削除に成功しました"
     # 特定の記事を削除した後、一覧に戻る
@@ -48,6 +55,12 @@ class ArticlesController < ApplicationController
   end
   
   private
+    # 特定の記事を検索するメソッド
+    # よく出るメソッドなのでprivateでまとめた。
+    def set_article
+      @article = Article.find(params[:id])
+    end
+  
     # このメソッドからarticleが作成される。
     def article_params
       params.require(:article).permit(:title, :description)
