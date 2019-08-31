@@ -1,4 +1,4 @@
-<h1>記事を作成</h1>
+<h1>作成済みの記事を編集する</h1>
 
 <% if @article.errors.any? %>
 <h2>次にエラーにより、記事が作成できませんでした。</h2>
@@ -24,4 +24,5 @@
     </p>
 <% end %>
 
+<%= link_to "この記事を編集する", edit_article_path(@article) %> | 
 <%= link_to "記事一覧に戻る", articles_path %>

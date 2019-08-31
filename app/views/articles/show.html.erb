@@ -1,9 +1,11 @@
-<h1>showing selected article</h1>
+<h1>選択した記事が表示されました</h1>
 
 <p>
-    Title: <%= @article.title %>
+    タイトル: <%= @article.title %>
 </p>
 
 <p>
-    Description: <% @article.description %>
+    説明: <% @article.description  9%>
 </p>
+
+<%= link_to "記事一覧に戻る", articles_path %>
