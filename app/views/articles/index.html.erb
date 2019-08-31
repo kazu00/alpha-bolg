@@ -4,8 +4,8 @@
 </p>
 <table>
     <tr>
-        <th>Title</th>
-        <th>Description</th>
+        <th>タイトル</th>
+        <th>説明</th>
     </tr>
     
     <% @articles.each do |article| %>
@@ -14,6 +14,8 @@
         <td><%= article.description %></td>
         <td><%= link_to '編集', edit_article_path(article) %></td>
         <td><%= link_to '詳細', article_path(article) %></td>
+        <!--  削除を行う場合methodと削除していいか確認を追加する -->
+        <td><%= link_to '削除', article_path(article), method: :delete, data: { confirm: "削除しますか？" } %></td>
     </tr>
     <% end %>
 </table> 

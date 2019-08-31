@@ -39,6 +39,14 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
   
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash[:notice] = "記事の削除に成功しました"
+    # 特定の記事を削除した後、一覧に戻る
+    redirect_to article_path
+  end
+  
   private
     # このメソッドからarticleが作成される。
     def article_params
