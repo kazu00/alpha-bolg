@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   
   
   def index
-    @articles = Articles.all
+    @articles = Article.all
   end
 
   def new
@@ -23,9 +23,9 @@ class ArticlesController < ApplicationController
   end
   
   def create    
-    #  記事の作成、titleとdescriptionが入力されている
+    #  記事の作成を行う
     @article = Article.new(article_params)
-    # =>保存が成功すれば、
+    # 保存が成功すれば、
     if @article.save
       flash[:notice] = "記事の作成に成功しました"
       # 生成した記事を view に飛ばす
@@ -55,14 +55,16 @@ class ArticlesController < ApplicationController
   end
   
   private
-    # 特定の記事を検索するメソッド
-    # よく出るメソッドなのでprivateでまとめた。
+    # 特定のarticleを検索する
+    # よく出るメソッドなのでbefore_actionで実行した
     def set_article
       @article = Article.find(params[:id])
     end
   
-    # このメソッドからarticleが作成される。
+    # articleを作成する。
     def article_params
       params.require(:article).permit(:title, :description)
     end
 end
+
+
