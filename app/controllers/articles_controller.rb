@@ -12,22 +12,21 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-    if @article.update(article_params)
-      flash[:notice] = "記事の編集に成功しました"
-      # 受け取った@articleをshow.htmlで表示する
-      redirect_to article_path(@article)
-    else
-      # edit.htmファイルを表示する
-      render 'edit'
-    end
+#    if @article.update(article_params)
+#      flash[:notice] = "記事の編集に成功しました"
+#      # 受け取った@articleをshow.htmlで表示する
+#      redirect_to article_path(@article)
+#    else
+#      # edit.htmファイルを表示する
+#      render 'edit'
+#    end
   end
   
   def create    
-    #  記事の作成を行う
+    #  titleとdescriptionのみを許可したメソッドを引数としている
     @article = Article.new(article_params)
-    # 保存が成功すれば、
     if @article.save
-      flash[:notice] = "記事の作成に成功しました"
+      flash[:success] = "記事の作成に成功しました"
       # 生成した記事を view に飛ばす
       redirect_to article_path(@article)
     else
@@ -37,7 +36,7 @@ class ArticlesController < ApplicationController
   
   def update
     if @article.update(article_params)
-        flash[:notice] = "記事の更新に成功しました"
+        flash[:danger] = "記事の更新に成功しました"
         redirect_to article_path(@article)
     else
         render 'edit'
@@ -61,7 +60,7 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
   
-    # articleを作成する。
+    # articleを作成するときtitleとdescriptionのみ許可する。
     def article_params
       params.require(:article).permit(:title, :description)
     end

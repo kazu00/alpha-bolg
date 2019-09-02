@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :articles
     # / でpagesコントローラーのhomeアクションに飛ぶ
     root 'pages#home'
     get '/about', to: 'pages#about'
