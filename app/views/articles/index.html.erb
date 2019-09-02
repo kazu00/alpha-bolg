@@ -1,21 +1,22 @@
-<h1>すべての記事一覧</h1>
-<p>
-    <%= link_to "記事を作成する", new_article_path%>
-</p>
-<table>
-    <tr>
-        <th>タイトル</th>
-        <th>説明</th>
-    </tr>
-    
-    <% @articles.each do |article| %>
-    <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= link_to '編集', edit_article_path(article) %></td>
-        <td><%= link_to '詳細', article_path(article) %></td>
-        <!--  削除を行う場合methodと削除していいか確認を追加する -->
-        <td><%= link_to '削除', article_path(article), method: :delete, data: { confirm: "削除しますか？" } %></td>
-    </tr>
-    <% end %>
-</table> 
+<h1 align="center">すべての記事一覧</h1>
+
+<% @articles.each do |article| %>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="well well-lg">
+                <div class="article-title">
+                    <%= link_to article.title, article_path(article) %>
+                </div>
+                <div class="article-body">
+                    <%= truncate(article.description, length: 100) %>
+                </div>
+                <div class="article-actions">
+                    <%= link_to "編集", edit_article_path(article), class: "btn btn-xs btn-primary" %>
+                    <%= link_to "削除", article_path(article), method: :delete, 
+                                        data: { confirm: "本当に削除　　しますか？" }, 
+                                        class: "btn btn-xs btn-danger" %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>
