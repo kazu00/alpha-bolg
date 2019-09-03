@@ -9,6 +9,11 @@
                 </div>
                 <div class="article-body">
                     <%= truncate(article.description, length: 100) %>
+                    <div class="article-body">
+                        <small>作成者: <%= article.user.username if article.user %>
+                            <%= time_ago_in_words(article.created_at) %> ago,
+                            最終更新日: <%= time_ago_in_words(article.updated_at) %> ago</small>
+                    </div>
                 </div>
                 <div class="article-actions">
                     <%= link_to "編集", edit_article_path(article), class: "btn btn-xs btn-primary" %>

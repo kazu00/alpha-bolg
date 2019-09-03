@@ -1,1 +1,9 @@
- This is the repository for the dirst a;phs-blog app of the Complete Ruby on Rails Developer Course
+== README
+
+このREADMEではアプリケーションを起動して実行するために必要な手順をすべてドキュメント化します
+
+カバーすること：
+システムの依存関係
+構成
+データベースの作成
+データベースの初期化
