@@ -12,19 +12,12 @@ class ArticlesController < ApplicationController
   end
   
   def edit
-#    if @article.update(article_params)
-#      flash[:notice] = "記事の編集に成功しました"
-#      # 受け取った@articleをshow.htmlで表示する
-#      redirect_to article_path(@article)
-#    else
-#      # edit.htmファイルを表示する
-#      render 'edit'
-#    end
   end
   
-  def create    
+  def create
     #  titleとdescriptionのみを許可したメソッドを引数としている
     @article = Article.new(article_params)
+    @article.user = User.first
     if @article.save
       flash[:success] = "記事の作成に成功しました"
       # 生成した記事を view に飛ばす
