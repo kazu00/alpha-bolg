@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'bcrypt', '~> 3.1.7'
+
 gem 'bootstrap-sass', '~> 3.3.5'
 # Use SCSS for stylesheets
 # bootstrap-sassと衝突を避けるためコメントアウトする
