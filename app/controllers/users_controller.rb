@@ -24,8 +24,13 @@ class UserController < ApplicationController
             flash[:seccuess] = "your account was updated seccuessfully"
             redirect_to articles_path
         else
-            
+            render 'edit'
         end
+    end
+    
+    def show
+        # クリックしたさいに固有のidが引数部分に入り@userに代入される？
+        @user = User.find(params[:id])
     end
     
     private
