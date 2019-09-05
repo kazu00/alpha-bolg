@@ -1,5 +1,9 @@
-class UserController < ApplicationController
-  
+class UsersController < ApplicationController
+    
+    def index
+        @users = User.all
+    end
+    
     def new
         @user = User.new
     end
@@ -21,7 +25,7 @@ class UserController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
-            flash[:seccuess] = "your account was updated seccuessfully"
+            flash[:success] = "your account was updated seccuessfully"
             redirect_to articles_path
         else
             render 'edit'
@@ -29,7 +33,7 @@ class UserController < ApplicationController
     end
     
     def show
-        # クリックしたさいに固有のidが引数部分に入り@userに代入される？
+        # クリックしたさいに固有のidが引数部分に入り@userに代入される?
         @user = User.find(params[:id])
     end
     
