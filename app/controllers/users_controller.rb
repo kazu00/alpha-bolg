@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     
     def index
-        @users = User.all
+        @users = User.paginate(page: params[:page], per_page: 5)
     end
     
     def new
@@ -35,10 +35,11 @@ class UsersController < ApplicationController
     def show
         # クリックしたさいに固有のidが引数部分に入り@userに代入される?
         @user = User.find(params[:id])
+        @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
     end
     
     private
     def user_params
-        @params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password)
     end
 end
