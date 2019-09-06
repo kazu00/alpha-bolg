@@ -20,13 +20,12 @@
     <hr>
     <%= simple_format(@article.description) %>
     <div class="article-actions">
-        <% if logged_in? && current_user == @article.user %>
+        <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
             <%= link_to "編集", edit_article_path, class: "btn btn-xs btn-primary" %>
             <%= link_to "削除", article_path(@article), method: :delete, 
-                                data: { confirm: "本当に削除　　しますか？" }, 
+                                data: { confirm: "本当に削除しますか？" }, 
                                 class: "btn btn-xs btn-danger" %>
             <% end %>
             <%= link_to "記事一覧", articles_path, class: "btn btn-xs btn-success" %>
     </div>
 </div>
-

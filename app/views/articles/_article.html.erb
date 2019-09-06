@@ -10,14 +10,15 @@
                     <%= truncate(article.description, length: 100) %>
                     <div class="article-body">
                         <small>作成者: <%= article.user.username if article.user %>
-                            <%= time_ago_in_words(article.created_at) %> ago,
-                            最終更新日: <%= time_ago_in_words(article.updated_at) %> ago</small>
+                            <%= time_ago_in_words(article.created_at) %>ago,
+                            最終更新日: <%= time_ago_in_words(article.updated_at) %>ago</small>
                     </div>
                 </div>
+                <% if logged_in && (current_user == article.user || current_user.admin?) %>
                 <div class="article-actions">
                     <%= link_to "編集", edit_article_path(article), class: "btn btn-xs btn-primary" %>
                     <%= link_to "削除", article_path(article), method: :delete, 
-                                        data: { confirm: "本当に削除　　しますか？" }, 
+                                        data: { confirm: "本当に削除しますか?" }, 
                                         class: "btn btn-xs btn-danger" %>
                 </div>
             </div>
