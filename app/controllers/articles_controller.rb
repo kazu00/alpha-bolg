@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
     def create
         #  titleとdescriptionのみを許可したメソッドを引数としている
         @article = Article.new(article_params)
-        @article.user = User.first
+        @article.user = current_user
         if @article.save
           flash[:success] = "記事の作成に成功しました"
           # 生成した記事を view に飛ばす
