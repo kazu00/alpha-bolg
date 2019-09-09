@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] =  @user.id
-            flash[:success] = "welcome to the alpha blog #{@user.username}"
+            flash[:success] = "#{@user.username}の登録が成功しました"
             # サインアップしたらそのままログイン状態に飛ぶ
             redirect_to user_path(@user)
         else

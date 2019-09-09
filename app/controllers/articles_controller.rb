@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
     
     def require_same_user
         if current_user != @article.user and !current_user.admin?
-           flash[:danger] = "you can only edit or delete your own article"
+           flash[:danger] = "ユーザー自身の記事のみ編集または削除ができます"
            redirect_to root_path
         end
     end

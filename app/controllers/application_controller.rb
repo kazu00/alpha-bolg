@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?
     
     def current_user
+        # ○○であれば、△△する。○○でなければ△△しない。
         # @current_userという箱の中に値がなければ、Modelからデータを引っ張て来て代入するの意味。 or演算子という
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
@@ -16,7 +17,7 @@ class ApplicationController < ActionController::Base
     
     def require_user
         if !logged_in?
-            flash[:danger] = "you must be logged in to perform that action"
+            flash[:danger] = "実行するにはログインする必要があります"
             redirect_to root_path
         end
     end
