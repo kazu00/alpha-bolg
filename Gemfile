@@ -10,7 +10,7 @@ gem 'will_paginate', '~> 3.1.5'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rails-controller-testing'
 
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.4.1'
 # Use SCSS for stylesheets
 # bootstrap-sassと衝突を避けるためコメントアウトする
 # gem 'sass-rails', '~> 5.0' 
